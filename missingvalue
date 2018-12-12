@@ -1,0 +1,40 @@
+c=range(0,11)
+n=10
+#input in binary format
+
+cbin=[]
+
+for i in c:
+   cbin.append(bin(i))
+print cbin
+cbin.remove('0b101')
+cbin=['0000','0001', '0010', '0011','0100','0110','0111','1000','1001','1010','1011','1100']
+import math
+
+print"-------------------------------------"
+print cbin
+print "......................................................"
+
+print int(math.log(n,2))
+def findmissing(n,cbin):
+    missing_value=''
+    for i in range(int(math.log(n,2))+1):
+        print count_0_1_P(n, cbin,-(i+1)),  missing_value,"missing"
+        if count_0_1_P(n, cbin,-(i+1))!=None:
+            missing_value =count_0_1_P(n, cbin,-(i+1))+missing_value
+    print  missing_value ,"final"
+
+# function to count 0s & 1s in the least significant list
+
+def count_0_1_P(n, cbin,p):
+    gap=2**(-1-p)
+    print gap,"gap"
+    for i in range(len(cbin)-gap-1):
+        print i, i+gap, cbin[i][p],cbin[i+gap][p]
+        if cbin[i][p]==cbin[i+gap][p]:
+            if cbin[i][p]=='0': 
+                return '1'
+            if cbin[i][p]=='1':
+                return '0'
+            
+findmissing(10,cbin)  
